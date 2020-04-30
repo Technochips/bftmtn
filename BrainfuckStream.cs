@@ -47,11 +47,11 @@ namespace bftmtn
 			brainfuck = new Task(new Action(Simulation));
 			brainfuck.Start();
 		}
-		public BrainfuckStream(string code, byte[] mem, int size = 30000, int buffSize = 1024)
+		public BrainfuckStream(string code, byte[] mem, int buffSize = 1024)
 		{
 			this.code = code;
 			this.mem = mem;
-			loops = new int[size];
+			loops = new int[mem.Length];
 
 			memPointer = 0;
 			loopPointer = 0;
@@ -113,6 +113,19 @@ namespace bftmtn
 		public override void SetLength(long value)
 		{
 			throw new NotSupportedException();
+		}
+
+		public bool Wait()
+		{
+			try
+			{
+				brainfuck.Wait();
+				return false;
+			}
+			catch (ObjectDisposedException)
+			{
+				return true;
+			}
 		}
 
 		private void Simulation()
