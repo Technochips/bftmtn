@@ -102,10 +102,6 @@ namespace bftmtn
 				inputBuffer[inputBufferW] = buffer[offset + i];
 				inputBufferW++;
 				if (inputBufferW >= outputBuffer.Length) inputBufferW = 0;
-				if(inputBufferW == inputBufferR)
-				{
-					throw new Exception("inputBuffer write - bufferoverflow?!");
-				}
 			}
 		}
 
@@ -169,10 +165,6 @@ namespace bftmtn
 						outputBuffer[outputBufferW] = mem[memPointer];
 						outputBufferW++;
 						if (outputBufferW >= outputBuffer.Length) outputBufferW = 0;
-						if (outputBufferW == outputBufferR)
-						{
-							throw new Exception("inputBuffer read - bufferoverflow?!");
-						}
 						break;
 					case ',':
 						if (inputBufferR == inputBufferW)

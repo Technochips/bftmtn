@@ -13,7 +13,7 @@ namespace bftmtn
 		static Task writeIn;
 		static void Main(string[] args)
 		{
-			bfs = new BrainfuckStream("+[----->+++<]>+.---.+++++++..+++.");
+			bfs = new BrainfuckStream(args.Length > 0 ? args[0] : "+[,.]");
 			writeIn = new Task(new Action(WriteIn));
 			writeIn.Start();
 
